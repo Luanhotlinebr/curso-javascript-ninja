@@ -12,7 +12,9 @@ Invoque a função criada acima, passando dois números que serão somados, e mo
 o resultado no console, com a frase:
 "A soma de [VALOR 1] e [VALOR2] é igual a [RESULTADO]."
 */
-console.log("A soma de 10 e 10 é igual a "+sum(10,10)+"."); // 20 
+var value1 = 10;
+var value2 = 20;
+console.log("A soma de " + value1 + " e " + value2 + " é igual a "+sum(value1,value2)+"."); // 20 
 
 /*
 Mostre no console o nome da função criada acima, com a frase:
@@ -31,15 +33,16 @@ function showName(){
 /*
 Declare uma variável chamada `varShowName` que recebe a função criada acima.
 */
-var varShowName = showName(); 
+var varShowName = showName;
 
 /*
 Usando a variável criada acima, mostre no console o nome e o retorno da função
 atribuída a ela, com a seguinte frase:
 "A função [NOME DA FUNÇÃO] retorna [RETORNO DA FUNÇÃO]."
 */
-console.log("A função " + showName.name + " retorna " + varShowName + ".")  
+console.log("A função " + varShowName.name + " retorna " + varShowName() + ".");
 // A função showName retorna Luan Sousa.
+// Correcao > Funcoes são objetos de primeira classe, podendo invocar propriedade e/ou metodos.
 
 /*
 Crie uma função literal chamada `calculator`, que funcione assim:
