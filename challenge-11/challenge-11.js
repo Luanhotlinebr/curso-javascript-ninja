@@ -9,10 +9,11 @@
   'Entrou ao menos uma vez!'
   Qual loop você deve usar para que essa mensagem seja mostrada no console?
   */
+  var once = false;
+  
   do{
-    once = true;
     console.log('Entrou ao menos uma vez!');
-  }while(once == false);
+  }while(once === true);
   
   /*
   Crie um objeto chamado `person`, que receba as seguintes propriedades:
@@ -38,7 +39,7 @@
   var counter =  0;
   for(var prop in person){
     counter ++;
-    console.log('The ' + prop +' of person is ' + person[prop] );
+    console.log('The ' + prop +' of person is ' + person[prop] + '.' );
   };
   console.log('The person has '+ counter+  ' properties');
   /*
@@ -56,13 +57,7 @@
   Após a função, mostrar a mensagem no console:
   'The person has more than 25 years old? [TRUE/FALSE]'
   */
-  function moreThan(age){
-    var result;
-    if(person.age < age){
-        return true;
-    }
-    return false;
-  };
+  function moreThan(age){return person.age > age};
   console.log( 'The person has more than 25 years old? ' + moreThan(26));
   
   /*
@@ -76,8 +71,10 @@
       if(count > 10){
           break;
       }
-      console.log(numbers[count]=count);
+      numbers.push(count);
+
   };
+  console.log(numbers);
   
   // ?
   
@@ -87,16 +84,12 @@
   esses. Se o número for ímpar, pular para o próximo número.
   Mostrar no console os números do array.
   */
-
-
-  var numbers = [];
   console.log( 'Pares de 0 a 20:' );
   for(var count = 0; count < 20; count ++){
-      if(count % 2 !== 0){
+      if(count % 2 === 0){
           continue;
-     
       }
-        console.log(numbers[count]=count);
+    numbers.push(count)
   };
-  // ?
+  console.log(numbers);
 }());
