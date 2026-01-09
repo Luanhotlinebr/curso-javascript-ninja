@@ -12,18 +12,11 @@ Mostre esse array no console.
 */
   
 console.log( 'Number Objects Array:' );
-var numberObjects = [
-  {number:1},
-  {number:2},
-  {number:3},
-  {number:4},
-  {number:5},
-  {number:6},
-  {number:7},
-  {number:8},
-  {number:9},
-  {number:10},
-];
+var numberObjects = [ ];
+
+for(var i = 1; i <=10;i++){
+  numberObjects.push({number:i})
+};
 console.log(numberObjects);
   
 /*
@@ -60,7 +53,7 @@ Mostre o resultado no console.
 
 console.log( '\nOperation:' );
 var operation = justMod2Or3.reduce(function(acumulador,valor_atual){
-   return result =  acumulador + valor_atual;
+   return (acumuluador + 1 ) * valor_atual;
 },0);
 console.log(operation);
   
@@ -71,7 +64,7 @@ console.
 */
 console.log( '\nOperation 2:' );
 var operation2 = justMod2Or3.reduceRight(function(acumulador,valor_atual){
-   return result =  acumulador + valor_atual;
+   return ( acumulador + 1 ) * valor_atual;
 },0);
 console.log(operation);
 
@@ -87,7 +80,7 @@ falada, como se você estivesse falando em código xD
 console.log( '\nSeu nome na língua do "P":' );
 var name = ["lu","an","sou","sa"];
 var pLanguage = name.reduce(function(acumulador,valor_atual){
-  return "P" + acumulador + valor_atual;
+  return acumulador + "P" + valor_atual;
 },'');
 console.log(pLanguage);
   
@@ -98,9 +91,9 @@ e atribuirá o seu nome invertido (usando o array criado acima).
   
 console.log( '\nInversed Name:' );
 var inversedName = name.reduceRight(function(acumulador,valor_atual){
-  return "P" + acumulador + valor_atual;
+  return  acumulador + "P" + valor_atual;
 },'');
-console.log(inversedName);
+console.log(inversedName,name.reverse().join(''));
 
 /*
 Mostre no console o array `numberObjects`.
@@ -118,20 +111,37 @@ Consegue prever o resultado? Deixe uma mensagem no console tentando explicar
 o que acontece ;)
 */
   
+
+
+// var obj = numberObjects[1]; (obj)
+if(numberObjects.indexOf(obj) > -1){
+  console.log("Existe um objeto { number: 2 } em numberObjects!");
+}else{
+  console.log("Não existe um objeto { number: 2 } em numberObjects :(");
+};
+
+/*
 console.log( '\nExiste um { number: 2 } em numberObjects?' );
 number2Exists = numberObjects.some(function(item){
   return item.number === 2;
 });
-  
+
 number2Exists 
   ? console.log("Existe um objeto { number: 2 } em numberObjects!")
   : console.log("Não existe um objeto { number: 2 } em numberObjects :(");
-  
+*/
+
 /*
 Fazendo o mesmo do exercício acima, mas começando a buscar do último índice,
 será que obtemos um resultado diferente? Faça a busca a partir do índice 2.
 */
-
+  
+if(numberObjects.lastIndexOf(({number:2},2) > -1){
+  console.log("Existe um objeto { number: 2 } em numberObjects!");
+}else{
+  console.log("Não existe um objeto { number: 2 } em numberObjects :(");
+};
+  
 /*
 Verifique se `justMod2Or3` é um array. Se for, mostre-o no console, no
 formato de String.
