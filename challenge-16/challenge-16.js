@@ -45,14 +45,12 @@
   console.log("\nNome convertido à partir de um slug:");
 
   function fixName(slugName) {
-    return (
-      "\n" +
-      slugName.charAt(0).toUpperCase() +
-      slugName.slice(1).split("-").join(" ")
-    );
+    return slugName.split("-").map(function(name){
+        return name.charAt(0).toUpperCase() + name.slice(1);
+    }).join(" ");  
   }
   console.log(fixName(fullName));
-
+  // Corrigida
   /*
   - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
   cada nome por vírgula. Entre o penúltimo e o último nome, o separador deve
@@ -74,16 +72,12 @@
     "Helena",
   ];
 
-  function showPhrase(array) {
-    return (
-      myFriends.slice(0, -1).join(",") +
-      " e " +
-      myFriends[myFriends.length - 1] +
-      " são meus amigos."
-    );
-  }
-  console.log(showPhrase(myFriends));
-
+   phrase = myFriends.reduce(function(acumulator,atual,index){
+      var separator = myFriends.length - 1 === index ? " e " : ",";
+      return acumulator + separator + atual;
+    }).concat(" são meus amigos.");
+  // Corrigida
+  
   /*
   Usando o replace(), faça a string "Roberto" virar "Roberta".
   Mostre o resultado no console.
@@ -112,4 +106,11 @@
   Ex.: Nomes que deveriam funcionar: "Fernando", "RoBertO", "gabriEla", etc.
   */
   console.log("\nNome com letras intercaladas entre caixa alta e baixa:");
+  var myName = "Luan";
+  var myNewName = [];
+  for(var i = 0 , len = myName.length; i < len; i++ ){
+    myNewName.push(i % 2 === 0 ? myName[i].toLowerCase() : myName[i].toUpperCase())
+  }
+  console.log(myNewName.join(""));
+  // Corrigida
 })();
