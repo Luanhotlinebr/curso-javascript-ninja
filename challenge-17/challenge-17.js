@@ -65,7 +65,11 @@
   */
 
   console.log('\n"O Centauro de Luvas" em caixa alta:');
-  // ?
+  console.log(
+    text.replace("O Centauro de Luvas", function (item) {
+      return item.toUpperCase();
+    })
+  );
 
   /*
   Agora iremos substituir as datas no formato "13 de junho de 1804" para
