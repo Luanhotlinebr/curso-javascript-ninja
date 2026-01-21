@@ -85,16 +85,13 @@ var markup = '<main>\n  <div class="container">\n    <span class="text date"></s
 console.log( '\nQuais classes CSS existem na marcação abaixo?\n\n', markup, '\n' );
   
 function hasClass(markup,cssClass){
-  var asHaveAClass = new RegExp('\\"(cssClass)\\"','gmi');
-if(markup.match(asHaveAClass)){
-  return true;
+    var regex = new RegExp('class=["\']([\\w\\s]+)?' + cssClass + '(?:[\\w\\s]+)?["\']');
+    return regex.test( markup );
 }
-  return false;
-}
-  
-console.log(hasClass(markup,'container' )+' para a classe container');
-console.log(hasClass(markup,'text' )+' para a classe text');
-console.log(hasClass(markup,'date' )+' para a classe date');
-console.log(hasClass(markup,'excerpt' )+' para a classe excerpt');
-console.log(hasClass(markup,'main' )+' para a classe main');
+
+var classes = ["container", "text", "date", "excerpt","main"];  
+classes.forEach(function(cssClass){
+  console.log(hasClass(markup,cssClass)+ " para a classe " + cssClass)
+})
+//Corrigido com o professor
 }())
