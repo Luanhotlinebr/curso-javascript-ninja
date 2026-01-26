@@ -15,40 +15,72 @@
   nome, `username` deve receber "Desconhecido".
   Com a resposta, mostre um alert com a mensagem "Bem vindo [USERNAME]!"
   */
-  var username = win.prompt("Qual é o seu nome?");
-  if (!username) username = "Desconhecido";
 
+  var username = win.prompt("Qual é o seu nome?");
   console.log(username);
+
   /*
   Agora, pergunte ao usuário "Qual o seu e-mail?", atribuindo o resultado à
   uma variável chamada `email`.
   */
-  // ?
+
+  var email = win.prompt("Qual o seu e-mail?");
+
   /*
   - Selecione o input de "Nome", atribuindo-o à uma variável chamada
   `$inputUsername`.
   */
-  // ?
+
+  var $inputUserName = document.querySelector('[type="text"]');
+  console.log($inputUserName);
   /*
   - Selecione o input de "Email", atribuindo-o à uma variável chamada
   `$inputEmail`.
   */
-  // ?
+
+  var $inputEmail = document.querySelector('[type="email"]');
+
   /*
   - Selecione o campo de "Mensagem", atribuindo-o à uma variável chamada
   `$message`.
   */
-  // ?
+
+  var $message = document.querySelector("textarea");
+
   /*
   - Selecione o botão de envio do formulário, atribuindo-o à uma variável
   chamada `$button`.
   */
-  // ?
+
+  var $button = document.querySelector('[type="submit"]');
+
   /*
   Preencha os campos de "Nome" e "Email" que estão no documento com os valores
   entrados pelo usuário.
   */
-  // ?
+
+  $inputUserName.value = username;
+  $inputEmail.value = email;
+
+  $button.addEventListener("click", function (event) {
+    event.preventDefault();
+    if ($inputUserName.value === "") {
+      alert("Preencha o nome do usuário!");
+      return;
+    }
+
+    if ($inputEmail.value === "") {
+      alert("Preencha o e-mail!");
+      return;
+    }
+
+    if ($message.value === "") {
+      alert("Preencha o e-mail!");
+      return;
+    }
+    console.log("Passou do if");
+  });
+
   /*
   Adicione um listener de evento de click ao botão que faça o seguinte:
   1. Verificar se todos os campos estão preenchidos:
@@ -73,7 +105,7 @@
   Caso contrário, mostre um alerta com a mensagem:
       - "Não enviado."
   */
-  // ?
+
   /*
   Crie uma função chamada `isValidEmail`, que será usada na validação do
   envio do formulário.
