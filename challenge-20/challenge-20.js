@@ -17,6 +17,7 @@
   */
 
   var username = win.prompt("Qual é o seu nome?");
+  if (!username) username = "Desconhecido";
   console.log(username);
 
   /*
@@ -62,25 +63,6 @@
   $inputUserName.value = username;
   $inputEmail.value = email;
 
-  $button.addEventListener("click", function (event) {
-    event.preventDefault();
-    if ($inputUserName.value === "") {
-      alert("Preencha o nome do usuário!");
-      return;
-    }
-
-    if ($inputEmail.value === "") {
-      alert("Preencha o e-mail!");
-      return;
-    }
-
-    if ($message.value === "") {
-      alert("Preencha o e-mail!");
-      return;
-    }
-    console.log("Passou do if");
-  });
-
   /*
   Adicione um listener de evento de click ao botão que faça o seguinte:
   1. Verificar se todos os campos estão preenchidos:
@@ -105,6 +87,37 @@
   Caso contrário, mostre um alerta com a mensagem:
       - "Não enviado."
   */
+
+  $button.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    if ($inputUserName.value === "") {
+      alert("Preencha o nome do usuário!");
+      return;
+    }
+
+    if ($inputEmail.value === "") {
+      alert("Preencha o e-mail!");
+      return;
+    }
+
+    if ($message.value === "") {
+      alert("Preencha a mensagem!");
+      return;
+    }
+    if (isValidEmail($inputEmail.value)) {
+      if (win.confirm("Tem certeza que deseja enviar o formulário?")) {
+        win.alert("Enviado com sucesso!");
+      } else {
+        win.alert("Não enviado.");
+      }
+    }
+    console.log(isValidEmail($inputEmail.value));
+  });
+
+  function isValidEmail(email) {
+    return /\w+@\w+\.\w+/.test(email);
+  }
 
   /*
   Crie uma função chamada `isValidEmail`, que será usada na validação do
