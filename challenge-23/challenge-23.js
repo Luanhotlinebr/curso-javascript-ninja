@@ -2,15 +2,48 @@
   "use strict";
 
   var $visor = document.querySelector('[data-js="visor"]');
+
   var $buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
+
+  var $buttonsOperations = document.querySelectorAll(
+    '[data-js="button-operation"]',
+  );
+
+  var $buttonCe = document.querySelector('[data-id="button-operation-ce"]');
+
+  $buttonCe.addEventListener("click", handleClickCe, false);
 
   Array.prototype.forEach.call($buttonsNumbers, function (button) {
     button.addEventListener("click", handleClickNumber, false);
   });
 
-  function handleClickNumber(event) {
+  Array.prototype.forEach.call($buttonsOperations, function (button) {
+    button.addEventListener("click", handleClickOperation, false);
+  });
+
+  function handleClickNumber() {
     $visor.value += this.value;
   }
+
+  function handleClickOperation() {
+    var operations = ["+", "*", "-", "/"];
+
+    if (isLastItemAnOperation()) $visor.value = $visor.value.slice(0, -1);
+
+    $visor.value += this.value;
+  }
+
+  function handleClickCe() {
+    $visor.value = 0;
+  }
+  function isLastItemAnOperation() {
+    var operations = ["+", "*", "-", "/"];
+    var lastItem = $visor.value.split("").pop();
+    return operations.some(function (operator) {
+      return operator === lastItem;
+    });
+  }
+
   /*
   Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
   As regras são:
