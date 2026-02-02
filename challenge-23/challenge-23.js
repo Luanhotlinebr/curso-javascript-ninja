@@ -1,31 +1,22 @@
-(function () {
-  console.log("Rodou no navegador");
+(function (document, windows) {
+  "use strict";
 
-  var operators = {
-    "+": "+",
-    "-": "-",
-    "/": "/",
-    "*": "*",
-  };
+  var $visor = document.querySelector('[data-js="visor"]');
+  var $buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
 
-  var result;
-
-  var input = document.querySelector('input[name="inputNumber"]');
-  var numbersInput = document.querySelector(".numbers-container");
-
-  console.log(input.value);
-
-  numbersInput.addEventListener("click", function (event) {
-    event.preventDefault();
-    console.log("Clicou em algum botao");
+  Array.prototype.forEach.call($buttonsNumbers, function (button) {
+    button.addEventListener("click", handleClickNumber, false);
   });
 
+  function handleClickNumber(event) {
+    $visor.value += this.value;
+  }
   /*
   Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
   As regras são:
 
   - Deve ter somente 1 input, mas não deve ser possível entrar dados nesse input
-  diretamente;
+  diretamente;adsl
   - O input deve iniciar com valor zero;
   - Deve haver 10 botões para os números de 0 a 9. Cada botão deve ser um número;
   - Deve haver 4 botões para as operações principais: soma (+), subtração(-),
@@ -45,4 +36,4 @@
   input;
   - Ao pressionar o botão "CE", o input deve ficar zerado.
   */
-})();
+})(document, window);
