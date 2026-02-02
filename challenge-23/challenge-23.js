@@ -9,9 +9,11 @@
     '[data-js="button-operation"]',
   );
 
-  var $buttonCe = document.querySelector('[data-id="button-operation-ce"]');
+  var $buttonCe = document.querySelector('[data-js="button-ce"]');
+  var $buttonEqual = document.querySelector('[data-js="button-equal"]');
 
   $buttonCe.addEventListener("click", handleClickCe, false);
+  $buttonEqual.addEventListener("click", handleClickEqual, false);
 
   Array.prototype.forEach.call($buttonsNumbers, function (button) {
     button.addEventListener("click", handleClickNumber, false);
@@ -25,23 +27,30 @@
     $visor.value += this.value;
   }
 
+  function handleClickEqual() {
+    removeLastItemIfItIsAnOperator();
+    console.log($visor.value);
+  }
+
   function handleClickOperation() {
-    var operations = ["+", "*", "-", "/"];
-
-    if (isLastItemAnOperation()) $visor.value = $visor.value.slice(0, -1);
-
+    removeLastItemIfItIsAnOperator();
     $visor.value += this.value;
   }
 
-  function handleClickCe() {
-    $visor.value = 0;
+  function removeLastItemIfItIsAnOperator() {
+    if (isLastItemAnOperation()) $visor.value = $visor.value.slice(0, -1);
   }
+
   function isLastItemAnOperation() {
     var operations = ["+", "*", "-", "/"];
     var lastItem = $visor.value.split("").pop();
     return operations.some(function (operator) {
       return operator === lastItem;
     });
+  }
+
+  function handleClickCe() {
+    $visor.value = 0;
   }
 
   /*
