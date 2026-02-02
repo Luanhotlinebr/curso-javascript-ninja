@@ -29,7 +29,12 @@
 
   function handleClickEqual() {
     removeLastItemIfItIsAnOperator();
-    console.log($visor.value);
+    var allValues = $visor.value.match(/\d+[+*\/-]?/g);
+    var result = allValues.reduce(function (accumulated, actual) {
+      return accumulated + actual;
+    });
+
+    console.log(result);
   }
 
   function handleClickOperation() {
