@@ -28,22 +28,40 @@
   }
 
   function handleClickEqual() {
-    removeLastItemIfItIsAnOperator();
+    $visor.value = removeLastItemIfItIsAnOperator($visor.value);
     var allValues = $visor.value.match(/\d+[+*\/-]?/g);
     var result = allValues.reduce(function (accumulated, actual) {
-      return accumulated + actual;
-    });
+      var firstValue = accumulated.slice(0, -1);
+      var operator = accumulated.split("").pop();
+      var lastValue = removeLastItemIfItIsAnOperator(actual);
+      var lastOperator = isLastItemAnOperation(actual)
+        ? actual.split("").pop()
+        : "";
 
-    console.log(result);
+      switch (operator) {
+        case "+":
+          return Number(firstValue) + Number(lastValue) + lastOperator;
+        case "-":
+          return Number(firstValue) - Number(lastValue) + lastOperator;
+        case "*":
+          return Number(firstValue) * Number(lastValue) + lastOperator;
+        case "/":
+          return Number(firstValue) / Number(lastValue) + lastOperator;
+      }
+    });
+    $visor.value = result;
   }
 
   function handleClickOperation() {
-    removeLastItemIfItIsAnOperator();
+    $visor.value = removeLastItemIfItIsAnOperator($visor.value);
     $visor.value += this.value;
   }
 
-  function removeLastItemIfItIsAnOperator() {
-    if (isLastItemAnOperation()) $visor.value = $visor.value.slice(0, -1);
+  function removeLastItemIfItIsAnOperator(number) {
+    if (isLastItemAnOperation(number)) {
+      return number.slice(0, -1);
+    }
+    return number;
   }
 
   function isLastItemAnOperation() {
