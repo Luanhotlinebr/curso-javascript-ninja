@@ -1,10 +1,11 @@
-
+(function(){
+        "use strict"
   /*
   1. Envolva todo o conteúdo desse desafio em uma IIFE.
   2. Adicione a diretiva 'use strict';
   3. Crie um arquivo index.html e adicione esse script à ele.
   */
-
+  
   /*
   Declare uma variável chamada `name` que receba seu primeiro nome.
   Mostre no console todas as letras do seu nome separadas, com a frase:
@@ -14,8 +15,12 @@
   - "e é a 2ª letra do meu nome."
   E assim por diante, até a última.
   */
-
-
+  
+  var name = "Luan";
+  name.split("").forEach(function(letra,indice){
+    console.log(letra + " é a " + (indice + 1) + "ª letra do meu nome.");
+  });
+  
   /*
   - Declare uma variável chamada `fullName`, que receba seu nome completo,
   escrito no formato de slug (caixa baixa e palavras separadas por um traço).
@@ -28,8 +33,25 @@
   - Mostre no console o nome no formato slug, e o resultado final. Use um
   console.log para cada formato.
   */
-
-
+  
+    var fullName = "luan-victor-paulino-da-meira-sousa";
+    console.log(fullName);
+    function transformString(string,array){
+      string.split("-").forEach(function(string){
+          var transformedStringToUppercase = 
+            string.charAt(0).toUpperCase() + 
+            string.slice(1);
+          array.push(transformedStringToUppercase.toString(" "));
+      })
+  };
+  
+  function adjustSlugString(string){
+       var newName = [];
+      transformString(string,newName);
+      return newName.join(" ");
+  }
+  console.log(adjustSlugString(fullName));
+  
   /*
   - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
   cada nome por vírgula. Entre o penúltimo e o último nome, o separador deve
@@ -39,19 +61,26 @@
   - Detalhe: o código abaixo deve funcionar com um array de qualquer tamanho.
   5 nomes foi somente uma sugestão ;)
   */
-
+  
+  var myFriends = ["Olivia","Harry Potter","Popeye","Dexter","John Cena"];
+  function showFriendsPhrase(array){
+    var positionOfThePenultimateElement = array[array.length - 2];
+   return array.reduce(function(acumulator,actualValue,index){
+        return acumulator + " " + actualValue;
+    })
+  }
   
   /*
   Usando o replace(), faça a string "Roberto" virar "Roberta".
   Mostre o resultado no console.
   */
-
+  
 
   /*
   Mostre no console a parte "nando" da string "Fernando". Use o método que
   faz a busca do final para o início da string.
   */
-
+  console.log("Fernando".substring(3));
 
   /*
   Declare uma variável chamada `myName`, que receba o seu primeiro nome,
@@ -62,5 +91,15 @@
   de qualquer tamanho, escrito de qualquer forma.
   Ex.: Nomes que deveriam funcionar: "Fernando", "RoBertO", "gabriEla", etc.
   */
-
-
+  var myName = "Luan";
+  function makeTheNameCrazy(name){
+    var newName = [];
+    name.split("").forEach(function(item,index){
+    index % 2 !== 0 
+      ? newName.push(item.toUpperCase()) 
+      : newName.push(item.toLowerCase());
+    });
+    return newName.join("");
+}
+  console.log(makeTheNameCrazy(myName))
+}())
