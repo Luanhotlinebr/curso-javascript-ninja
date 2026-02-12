@@ -14,3 +14,40 @@ https://developer.mozilla.org/en-US/docs/Web/Events#Categories
 Tente aplicar na prática alguns dos eventos que estão ali e coloque nesse
 desafio os experimentos legais que você conseguir desenvolver :D
 */
+
+(function () {
+  $button = document.querySelector('[data-js="button"]');
+  $customerName = document.querySelector('[data-js="customerName"]');
+  $customerNumber = document.querySelector('[data-js="customerNumber"]');
+  $customerEmail = document.querySelector('[data-js="customerEmail"]');
+  $customerSupplyType = document.querySelector(
+    '[data-js="customerSupplyType"]',
+  );
+  $customerSupplySerial = document.querySelector(
+    '[data-js="customerSupplySerial"]',
+  );
+
+  $customerName.value = "Consumidor padrão";
+  onEnvents();
+  function onEnvents() {
+    console.log("Suprise filho da mãe");
+    return $button.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      console.log(
+        JSON.stringify({
+          nomeCliente: $customerName.value,
+          numeroCliente: $customerNumber.value,
+          emailCliente: $customerEmail.value,
+          tipoEquipamentoCliente: $customerSupplyType.value,
+          serialEquipamentoCliente: $customerSupplySerial.value,
+        }),
+      );
+      (($customerName.value = ""),
+        ($customerNumber.value = ""),
+        ($customerEmail.value = ""),
+        ($customerSupplyType.value = ""),
+        ($customerSupplySerial.value = ""));
+    });
+  }
+})();
