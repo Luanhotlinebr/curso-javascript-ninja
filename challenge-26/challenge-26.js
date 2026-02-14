@@ -21,11 +21,40 @@ Só passe para o próximo problema quando tiver resolvido o anterior :)
 */
 // ?
 
+// var $link1 = document.querySelector('[data-js="link"]');
+// console.log($link1);
+
+var $anchor = document.querySelectorAll('[data-js="link"]');
+console.log(
+  Array.from($anchor).forEach(function (item) {
+    console.log(item.parentNode);
+  }),
+);
+
+function DOM(string) {
+  this.element = string;
+
+  this.on = function (event, callback) {
+    document
+      .querySelector(this.element)
+      .addEventListener(event, callback, false);
+  };
+
+  this.off = function (event, callback) {
+    document
+      .querySelector(this.element)
+      .removeEventListener(event, callback, true);
+  };
+  this.get = function () {
+    return document.querySelectorAll(this.element);
+  };
+}
+
 var $a = new DOM('[data-js="link"]');
-$a.on('click', function(e) {
+$a.on("click", function (e) {
   e.preventDefault();
-  console.log('clicou');
+  console.log("clicou");
 });
 
-console.log('Elementos selecionados:', $a.get());
-console.log('$a é filho de body?', $a.get()[0].parentNode === document.body);
+console.log("Elementos selecionados:", $a.get());
+console.log("$a é filho de body?", $a.get()[0].parentNode === document.body);
