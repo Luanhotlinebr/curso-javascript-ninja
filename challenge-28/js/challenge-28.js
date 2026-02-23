@@ -163,19 +163,16 @@
   function getUrl() {
     return "https://viacep.com.br/ws/[CEP]/json/".replace("[CEP]", clearCEP());
   }
+
   function clearCEP() {
     return $inputCep.get()[0].value.replace(/\D/g, "");
   }
 
-  function clearData() {
-    return {
-      cep: "-",
-      bairro: "-",
-      estado: "-",
-      localidade: "-",
-      logradouro: "-",
-    };
+  function replaceCEP(message) {
+    var cep = clearCEP();
+    return message.replace("[CEP]", cep);
   }
+
   function getMessage(type) {
     var messages = {
       loading: replaceCEP("Buscando informações para o CEP [CEP]..."),
@@ -186,9 +183,14 @@
     $status.get()[0].textContent = messages[type];
   }
 
-  function replaceCEP(message) {
-    var cep = clearCEP();
-    return message.replace("[CEP]", cep);
+  function clearData() {
+    return {
+      cep: "-",
+      bairro: "-",
+      estado: "-",
+      localidade: "-",
+      logradouro: "-",
+    };
   }
   // handle = manipular
 })(window, document);
